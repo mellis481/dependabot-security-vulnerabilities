@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "glob-parent": "^4.0.0",
     "semver": "^5.7.0",
     "word-wrap": "^1.1.0"
   }
