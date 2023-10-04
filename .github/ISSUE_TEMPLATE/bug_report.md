@@ -30,7 +30,7 @@ If applicable, add screenshots and/or videos to help explain your problem.
 
 **Version**
 - Browser [e.g. chrome, safari]
-- Version [e.g. 2.8.0]
+- react-accessible-treeview Version [e.g. 2.8.0]
 
 **Additional context**
 Add any other context about the problem here.
