@@ -1,8 +1,32 @@
 version: 2
 registries:
+  vertexinc:
+    type: npm-registry
+    url: 'https://npm.pkg.github.com'
+    token: ${{ secrets.DEPENDABOT_PRIVATE_PACKAGE_TOKEN }}
 updates:
+  # github actions updates
+  - package-ecosystem: 'github-actions'
+    directory: '/'
+    schedule:
+      interval: 'daily'
+    open-pull-requests-limit: 1
+  # npm packages for @vertexinc major and minor updates only
+  - package-ecosystem: 'npm'
+    directory: '/'
+    registries:
+      - 'vertexinc'
+    schedule:
+      interval: 'daily'
+    open-pull-requests-limit: 1
+    allow:
+      - dependency-name: '@vertexinc/*'
+    ignore:
+      - dependency-name: '@vertexinc/*'
+        update-types: ['version-update:semver-patch']
+  # npm packages for security updates only
   - package-ecosystem: 'npm'
     directory: '/'
     schedule:
       interval: 'daily'
-    open-pull-requests-limit: 10
+    open-pull-requests-limit: 0
