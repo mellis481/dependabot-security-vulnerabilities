@@ -1,3 +1,3 @@
 # dependabot-security-vulnerabilities
 
-starting point
+v1.1.0 version
