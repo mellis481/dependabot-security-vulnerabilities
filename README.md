@@ -1,3 +1,3 @@
 # dependabot-security-vulnerabilities
 
-first update
+v2.0.0 version
