@@ -1,0 +1,15 @@
+name: Dispatch Test
+on:
+  workflow_dispatch:
+    inputs:
+      newPackageJsonVersion:
+        description: 'The semver for the version you would like to publish'
+        required: true
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+      - run: echo "version: ${{ github.event.inputs.newPackageJsonVersion }}"
+      - run: git branch
