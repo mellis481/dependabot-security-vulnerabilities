@@ -12,9 +12,8 @@ jobs:
     outputs:
       commitMessage: ${{ steps.commitMessage.outputs.value }}
     steps:
-      - id: commitMessage
-        run: |
+      - run: |
           COMMIT_MESSAGE="${{ github.event.inputs.TEST_STRING }}"
-          echo "value=$COMMIT_MESSAGE" >> $GITHUB_OUTPUT
           COMMIT_MESSAGE="${COMMIT_MESSAGE//,/}"
           echo "value=$COMMIT_MESSAGE" >> $GITHUB_OUTPUT
+      - run: echo "COMMIT_MESSAGE is ${{ needs.prepare.outputs.commitMessage }} ok?" >> $GITHUB_OUTPUT
