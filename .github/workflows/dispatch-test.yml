@@ -14,8 +14,8 @@ jobs:
     steps:
       - id: commitMessage
         run: |
-          COMMIT_MESSAGE="${{ github.event.inputs.TEST_STRING }}"
-          COMMIT_MESSAGE='${COMMIT_MESSAGE//"/}'
+          COMMIT_MESSAGE=github.event.inputs.TEST_STRING
+          COMMIT_MESSAGE="${COMMIT_MESSAGE//,/}"
           echo "value=$COMMIT_MESSAGE" >> $GITHUB_OUTPUT
   printing:
     needs: prepare
