@@ -12,10 +12,10 @@ jobs:
     env:
       PR_TITLE: ${{ github.event.inputs.PR_TITLE }}
     outputs:
-      commitMessage: "Deploying commit ${{ steps.commitMessage.outputs.value }}"
+      commitMessage: ${{ steps.commitMessage.outputs.value }}
     steps:
       - id: commitMessage
-        run: echo "value=${{ env.PR_TITLE }}" >> $GITHUB_OUTPUT
+        run: echo "value=Deploying commit ${{ env.PR_TITLE }}" >> $GITHUB_OUTPUT
   printing:
     needs: prepare
     runs-on: ubuntu-latest
