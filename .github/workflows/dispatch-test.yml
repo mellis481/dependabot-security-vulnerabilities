@@ -1,6 +1,11 @@
 ---
 name: Dispatch Test
-on: workflow_dispatch
+on:
+  workflow_dispatch:
+    inputs:
+      TEST_STRING:
+        description: 'Test string'
+        required: true
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -9,7 +14,7 @@ jobs:
     steps:
       - id: commitMessage
         run: |
-          COMMIT_MESSAGE="${{ github.event.pull_request.title }}"
+          COMMIT_MESSAGE="${{ github.event.inputs.TEST_STRING }}"
           echo "value=$COMMIT_MESSAGE" >> $GITHUB_OUTPUT
           COMMIT_MESSAGE="${COMMIT_MESSAGE//,/}"
           echo "value=$COMMIT_MESSAGE" >> $GITHUB_OUTPUT
