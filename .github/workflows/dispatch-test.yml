@@ -16,4 +16,4 @@ jobs:
           COMMIT_MESSAGE="${{ github.event.inputs.TEST_STRING }}"
           COMMIT_MESSAGE="${COMMIT_MESSAGE//,/}"
           echo "value=$COMMIT_MESSAGE" >> $GITHUB_OUTPUT
-      - run: echo "COMMIT_MESSAGE is ${{ needs.prepare.outputs.commitMessage }} ok?" >> $GITHUB_OUTPUT
+      - run: echo "COMMIT_MESSAGE is ${{ needs.prepare.outputs.commitMessage }} ok?"
