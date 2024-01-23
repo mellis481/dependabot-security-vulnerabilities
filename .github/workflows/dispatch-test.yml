@@ -18,6 +18,7 @@ jobs:
           COMMIT_MESSAGE="${COMMIT_MESSAGE//,/}"
           echo "value=$COMMIT_MESSAGE" >> $GITHUB_OUTPUT
   printing:
+    needs: prepare
     runs-on: ubuntu-latest
     steps:
       - run: echo "COMMIT_MESSAGE is ${{ needs.prepare.outputs.commitMessage }} ok?"
