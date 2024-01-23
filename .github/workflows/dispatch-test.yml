@@ -15,7 +15,7 @@ jobs:
       commitMessage: "Deploying commit ${{ steps.commitMessage.outputs.value }}"
     steps:
       - id: commitMessage
-        run: echo "value=${{ env.COMMIT_MESSAGE }}" >> $GITHUB_OUTPUT
+        run: echo "value=${{ env.PR_TITLE }}" >> $GITHUB_OUTPUT
   printing:
     needs: prepare
     runs-on: ubuntu-latest
