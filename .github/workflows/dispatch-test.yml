@@ -3,21 +3,19 @@ name: Dispatch Test
 on:
   workflow_dispatch:
     inputs:
-      PR_TITLE:
-        description: 'PR title'
+      branchName:
+        description: 'Branch name'
         required: true
 jobs:
   prepare:
     runs-on: ubuntu-latest
-    env:
-      PR_TITLE: ${{ github.event.inputs.PR_TITLE }}
     outputs:
-      commitMessage: ${{ steps.commitMessage.outputs.value }}
+      publishTag: ${{ steps.publishTag.outputs.value }}
     steps:
-      - id: commitMessage
-        run: echo "value=Deploying commit ${{ env.PR_TITLE }}" >> $GITHUB_OUTPUT
+      - id: publishTag
+        run: echo "value=${{ github.event.inputs.branchName == 'master' && 'latest' || github.event.inputs.branchName }}" >> $GITHUB_OUTPUT
   printing:
     needs: prepare
     runs-on: ubuntu-latest
     steps:
-      - run: echo "COMMIT_MESSAGE is ${{ needs.prepare.outputs.commitMessage }} ok?"
+      - run: echo "publishTag is ${{ needs.prepare.outputs.publishTag }}"
