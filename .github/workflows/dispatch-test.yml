@@ -7,15 +7,7 @@ on:
         description: 'Branch name'
         required: true
 jobs:
-  prepare:
-    runs-on: ubuntu-latest
-    outputs:
-      publishTag: ${{ steps.publishTag.outputs.value }}
-    steps:
-      - id: publishTag
-        run: echo "value=${{ github.event.inputs.branchName == 'master' && 'latest' || github.event.inputs.branchName }}" >> $GITHUB_OUTPUT
-  printing:
-    needs: prepare
+  new-job:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "publishTag is ${{ needs.prepare.outputs.publishTag }}"
+      - run: echo "something not in main"
