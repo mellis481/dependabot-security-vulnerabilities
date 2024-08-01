@@ -6,17 +6,21 @@ on:
       branchName:
         description: 'Branch name'
         required: true
+      latestPackageOverride:
+        description: 'By default, only releases from master will be tagged as latest. If you want to override this behavior for non-master branches, set this to true'
+        required: false
+        type: boolean
 jobs:
   prepare:
     runs-on: ubuntu-latest
     outputs:
-      publishTag: ${{ steps.publishTag.outputs.value }}
-      publishTag2: ${{ steps.publishTag2.outputs.value }}      
+      publishTag: ${{ steps.publishTag.outputs.value }}  
+      publishTag2: ${{ steps.publishTag2.outputs.value }} 
     steps:
       - id: publishTag
         run: echo "value=${{ github.event.inputs.branchName == 'master' && 'latest' || github.event.inputs.branchName }}" >> $GITHUB_OUTPUT
       - id: publishTag2
-      - run: echo "value=${{ github.event.inputs.branchName == 'master' && 'latest' || github.event.inputs.branchName }}" >> $GITHUB_OUTPUT
+        run: echo "value=${{ github.event.inputs.branchName == 'master' && 'latest' || (fromJSON(github.event.inputs.latestPackageOverride) && 'latest' || github.event.inputs.branchName) }}" >> $GITHUB_OUTPUT
   printing:
     needs: prepare
     runs-on: ubuntu-latest
