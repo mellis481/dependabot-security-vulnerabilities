@@ -23,3 +23,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: echo "publishTag is ${{ needs.prepare.outputs.publishTag }}"
+    steps:
+      - run: echo "resolved tag is ${{ github.event.inputs.latestReleaseOverride || github.ref_name == 'main' && 'latest' || github.ref_name }}"
