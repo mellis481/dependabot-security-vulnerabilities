@@ -6,7 +6,7 @@ on:
       branchName:
         description: 'Branch name'
         required: true
-      latestReleaseOverride: 'Latest release override'
+      latestReleaseOverride:
         description: 'By default, only releases from master will be tagged as latest. If you want to override this behavior, set this to true'
         required: false
         type: boolean
