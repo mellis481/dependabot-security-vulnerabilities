@@ -16,7 +16,9 @@ jobs:
     outputs:
       publishTag: ${{ steps.publishTag.outputs.value }}
     steps:
-      - run: echo "value=${{ github.event.inputs.branchName == 'master' && 'latest' || (fromJSON(github.event.inputs.latestPackageOverride) && 'latest' || github.event.inputs.branchName) }}" >> $GITHUB_OUTPUT
+      - run: echo "value=${{ github.event.inputs.branchName == 'master' && 'latest' || 'not-latest' }}" >> $GITHUB_OUTPUT
+      #- run: echo "value=${{ github.event.inputs.branchName == 'master' && 'latest' || (fromJSON(github.event.inputs.latestPackageOverride) && 'latest' || github.event.inputs.branchName) }}" >> $GITHUB_OUTPUT
+      
   printing:
     needs: prepare
     runs-on: ubuntu-latest
