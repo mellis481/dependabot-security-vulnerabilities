@@ -24,8 +24,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: echo "publishTag is ${{ needs.prepare.outputs.publishTag }}"
-      - name: Sleep for 30 seconds
+      - name: Sleep for 10 seconds
         uses: jakejarvis/wait-action@master
         with:
           time: '10s'
       - run: echo "publishTag is ${{ needs.prepare.outputs.publishTag }}"
+      - run: npm run ${{ needs.prepare.outputs.publishTag }}
