@@ -18,12 +18,14 @@ jobs:
       publishTag2: ${{ steps.publishTag2.outputs.value }} 
     steps:
       - id: publishTag
-        run: echo "value=${{ github.event.inputs.branchName == 'master' && 'latest' || github.event.inputs.branchName }}" >> $GITHUB_OUTPUT
-      - id: publishTag2
         run: echo "value=${{ github.event.inputs.branchName == 'master' && 'latest' || (fromJSON(github.event.inputs.latestPackageOverride) && 'latest' || github.event.inputs.branchName) }}" >> $GITHUB_OUTPUT
   printing:
     needs: prepare
     runs-on: ubuntu-latest
     steps:
       - run: echo "publishTag is ${{ needs.prepare.outputs.publishTag }}"
-      - run: echo "publishTag2 is ${{ needs.prepare.outputs.publishTag2 }}"
+      - name: Sleep for 30 seconds
+        uses: jakejarvis/wait-action@master
+        with:
+          time: '10s'
+      - run: echo "publishTag is ${{ needs.prepare.outputs.publishTag }}"
